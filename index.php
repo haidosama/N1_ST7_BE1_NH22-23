@@ -227,7 +227,6 @@
 										<img src="./img/<?php echo $value['image'] ?>" alt="">
 										<div class="product-label">
 											<span class="sale">-30%</span>
-											<span class="new">NEW</span>
 										</div>
 									</div>
 									<div class="product-body">

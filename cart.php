@@ -18,22 +18,20 @@ if (isset($_GET['cid'])) {
 	$url = 'http://localhost' . $_GET['url'];
 	$cqty;
 
-	$check = $cart->getIdProductCart($cid);
+	$check = count($cart->getIdProductCart($cid));
 
-	if(!$check){
+	if($check == 0){	
 		$cqty = 1;
 		$cart->insertProductToCart($cid, $cname, $cprice, $cimg, $cqty);
 	}else{
 		$productcart = $cart->getIdProductCart($cid);
 
-		$uqty = $productcart[0]['qty']++;
+		$uqty = $productcart[0]['qty']+1;
 
 		$cart->editQtyProductInCart($cid, $uqty);
 		
 	}
-	// var_dump($check);
 	header("location: $url");
-	exit();
   }
 
 //Xoa san pham khoi gio hang
