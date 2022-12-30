@@ -94,9 +94,9 @@ include "header.php";
 						<td><a class="btn btn-danger mx-2" <?php //nếu có username thì checkout ngược lại register 
                         if
                         ($grand_total > 1) {
-	                        if (isset($_SESSION['username'])) {
+	                        if (isset($_SESSION['name'])) {
 		                        //nếu đã login thì chuyển đến trang thanh toán
-                        		echo 'href="#"';
+                        		echo 'href="checkout.php"';
 	                        } else {
 		                        echo 'href="login.php"';
 	                        }

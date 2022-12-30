@@ -2,37 +2,42 @@
 require "config.php";
 require "model/db.php";
 require "model/user.php";
-include "login.php";
 
 $user = new User;
 
-if (isset($_POST["btn_submit"])) {
-    $name = $_POST["name"];
-    $phone = $_POST["phone"];
-    $email = $_POST["email"];
-    $username = $_POST["username"];
-    $password = $_POST["password"];
-    $confpassword = $_POST["confpassword"];
+if (isset($_GET["btn_submit"])) {
+    $name = $_GET["name"];
+    $phone = $_GET["phone"];
+    $email = $_GET["email"];
+    $username = $_GET["username"];
+    $password = $_GET["password"];
+    $confpassword = $_GET["confpassword"];
 
-    // $checkEmail = $user->checkEmailExists($email);
-    // $checkUsername = $user->checkUsernameExists($username);
+    var_dump($_GET);
+    $checkEmail = $user->checkEmailExists($email);
+    var_dump($checkEmail);
+    $checkUsername = $user->checkUsernameExists($username);
+    var_dump($checkUsername);
 
-    // if ($checkEmail) {
-    //     alert("Please enter");
-    //     //header("location:index.php");
-    // } elseif($checkUsername){
-    //     // alert('Login failed');
-    //     header("location:login.php");
-    // }elseif($password != $confpassword){
-    //     alert('Password wrong !!');
-    //     header("location:login.php");
-    // }else{
+    if ($checkEmail) {
+        $msg = "This email is already in use";
+        //  header("location:register.php");
 
-      
-    // }
-    $user->insertUser($name, $username, $password, $phone, $email);
+    } elseif($checkUsername){
+        $msg ="This username is already in use";
+        // header("location:register.php");
 
+    }elseif($password != $confpassword){
+        $msg ="Password and Confirm Password are not the same";
+    //    header("location:register.php");
+
+    }else{
+        $user->insertUser($name, $phone, $email, $username, $password);
+        var_dump($user->getDataUser($username));
+        // header("location:login.php");
+    }
 }
+
 function alert($msg) {
     echo "<script type='text/javascript'>alert('$msg');</script>";
 }

@@ -16,20 +16,29 @@ if (isset($_GET['cid'])) {
 	$cprice = $_GET['cprice'];
 	$cimg = $_GET['cimg'];
 	$url = 'http://localhost' . $_GET['url'];
-	$cqty;
-
-	$check = count($cart->getIdProductCart($cid));
+	
+	$productcart = $cart->getIdProductCart($cid);
+	$check = count($productcart);
 
 	if($check == 0){	
 		$cqty = 1;
 		$cart->insertProductToCart($cid, $cname, $cprice, $cimg, $cqty);
 	}else{
-		$productcart = $cart->getIdProductCart($cid);
 
-		$uqty = $productcart[0]['qty']+1;
+		foreach($productcart as $value){
+			$cqty = $value['qty']+1;
+			$cart->editQtyProductInCart($cqty, $cid);
+		}
 
-		$cart->editQtyProductInCart($cid, $uqty);
+		// echo "value['qty']= ";
+		// var_dump($cqty);
+
 		
+		// $productcart = $cart->getIdProductCart($cid);
+
+		// echo "product= ";
+		// var_dump($productcart);
+
 	}
 	header("location: $url");
   }

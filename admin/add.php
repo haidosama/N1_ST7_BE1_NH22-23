@@ -7,8 +7,30 @@ require "model/protype.php";
 
 
 $product = new Product;
+$manu = new Manufacture;
+$type = new Protype;
 
-if(isset($_POST['name'])){
+//Manufactures
+if(isset($_POST['submit_manu'])){
+    $name = $_POST['manu_name'];
+    var_dump($name);
+    $image = $_FILES['manu_image']['manu_name'];
+    var_dump($image);
+
+    //goi phuong thuc them
+    $manu->addManu($name,$image);
+
+    //xu ly upload
+    $target_dir = "../img/";
+    $target_file = $target_dir . basename($_FILES['manu_image']['manu_name']);
+    move_uploaded_file($_FILES['manu_image']['tmp_name'], $target_file);
+
+    var_dump($_FILES);
+    // header('location: manufacture.php');
+}
+
+//Products
+if(isset($_POST['submit_product'])){
     $name = $_POST['name'];
     $price = $_POST['price'];
     $image = $_FILES['image']['name'];

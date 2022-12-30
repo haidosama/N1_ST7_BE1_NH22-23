@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require "config.php";
 require "model/db.php";
 require "model/product.php";
@@ -75,17 +77,20 @@ $getAllType = $type->getAllProtype();
 				</ul>
 				<!-- LOGIN -->
 				<ul class="header-links pull-right">
-					<?php if (isset($_SESSION["username"])) { ?>
+					<?php if (isset($_SESSION['name'])) { ?>
 
-					<li><a href="#"><i class="fa fa-user-o"></i>
-							<?php echo $_SESSION["username"] ?>
-						</a></li>
-					<li><a href="logout.php">Log out</a></li>
+						<li><a href="#"><i class="fa fa-user-o"></i>
+								<?php echo $_SESSION['name'] ?>
+							</a></li>
+						<?php if (isset($_SESSION['admin'])) { ?>
+							<li><a href="http://localhost/SG_Project_BE1/admin/index.php">AdminLTE</a></li>
+							<?php } ?>
+						<li><a href="logout.php">Log out</a></li>
 
-					<?php } else { ?>
-					<li><a href="login.php"><i class="fa fa-user-o"> Login</i></a></li>
+						<?php } else { ?>
+						<li><a href="login.php"><i class="fa fa-user-o"> Login</i></a></li>
 
-					<?php } ?>
+						<?php } ?>
 				</ul>
 				<!-- /LOGIN -->
 			</div>
@@ -113,7 +118,7 @@ $getAllType = $type->getAllProtype();
 						<div class="header-search">
 							<form method="get" action="result.php">
 								<input class="input-select" placeholder="Search here" name="keyword" value="<?php if (isset($_GET['keyword']))
-	                                echo $_GET['keyword'] ?>">
+								echo $_GET['keyword'] ?>">
 								<button type="submit" class="search-btn">Search</button>
 							</form>
 						</div>
@@ -128,7 +133,9 @@ $getAllType = $type->getAllProtype();
 								<a href="cartview.php">
 									<i class="fa fa-shopping-cart"></i>
 									<span>Your Cart</span>
-									<div class="qty" id="cart-item"><?php echo count($cart->getAllCart()); ?></div>
+									<div class="qty" id="cart-item">
+										<?php echo count($cart->getAllCart()); ?>
+									</div>
 								</a>
 							</div>
 							<!-- /Cart -->
@@ -154,22 +161,22 @@ $getAllType = $type->getAllProtype();
 				<!-- NAV -->
 				<ul class="main-nav nav navbar-nav">
 					<?php
-                    $getAllManu = $manu->getAllManufactures();
-                    $getID = 0;
-                    if (isset($_GET['manu_id'])) {
-	                    $getID = $_GET['manu_id'];
-                    }
-                    ?>
+					$getAllManu = $manu->getAllManufactures();
+					$getID = 0;
+					if (isset($_GET['manu_id'])) {
+						$getID = $_GET['manu_id'];
+					}
+					?>
 					<li class="<?php if ($getID == 0)
-	                    echo "active" ?>"><a href="index.php">Home</a></li>
+					echo "active" ?>"><a href="index.php">Home</a></li>
 					<?php
-                    foreach ($getAllManu as $value):
-                    ?>
-					<li class="<?php if ($getID == $value['manu_id'])
-		                    echo "active" ?>"><a href="products.php?manu_id=<?php echo $value['manu_id'] ?>">
-							<?php echo $value['manu_name'] ?>
-						</a></li>
-					<?php endforeach; ?>
+					foreach ($getAllManu as $value):
+						?>
+						<li class="<?php if ($getID == $value['manu_id'])
+						echo "active" ?>"><a href="products.php?manu_id=<?php echo $value['manu_id'] ?>">
+								<?php echo $value['manu_name'] ?>
+							</a></li>
+						<?php endforeach; ?>
 				</ul>
 				<!-- /NAV -->
 			</div>

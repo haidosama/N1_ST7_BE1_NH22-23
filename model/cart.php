@@ -18,15 +18,7 @@ class Cart extends Db
         $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
         return $items; //return an array
     }
-    // public function getProductbyID($id)
-    // {
-    //     $sql = self::$connection->prepare("SELECT * FROM `products` WHERE `id` = ?");
-    //     $sql->bind_param("i", $id);
-    //     $sql->execute(); //return an object
-    //     $items = array();
-    //     $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
-    //     return $items; //return an array
-    // }
+    
     public function insertProductToCart($cid, $cname, $cprice, $cimg, $cqty)
     {
         $sql = self::$connection->prepare("INSERT INTO cart (id,product_name,product_price,product_img,qty) 
@@ -34,13 +26,12 @@ class Cart extends Db
         $sql->bind_param("isisi", $cid, $cname, $cprice, $cimg, $cqty);
         $sql->execute(); //return an object
     }
-    public function editQtyProductInCart($cid, $cqty)
+    public function editQtyProductInCart($cqty, $cid)
     {
-        $sql = self::$connection->prepare("UPDATE `cart` SET `id`=?,`qty`=?");
-        $sql->bind_param("ii", $cid,  $cqty);
+        $sql = self::$connection->prepare("UPDATE `cart` SET `qty`=? WHERE `id`=?");
+        $sql->bind_param("ii", $cqty, $cid);
         return $sql->execute(); //return an object
     }
-  
     public function delProductInCart($id)
     {
         $sql = self::$connection->prepare("DELETE FROM `cart` WHERE id=?");

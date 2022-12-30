@@ -33,7 +33,7 @@
             </a>
         </div>
         <h2>Registration Form</h2>
-        <form action="check-register.php" method="post">
+        <form action="check-register.php" method="">
             <div class="form-group">
                 <label for="firstname">Your Name</label>
                 <input type="text" class="form-control" name="name">
