@@ -10,23 +10,40 @@ $product = new Product;
 $manu = new Manufacture;
 $type = new Protype;
 
+//Protypes
+if(isset($_POST['submit_type'])){
+
+    $name = $_POST['type_name'];
+    $image = $_FILES['type_image']['name'];
+
+    //goi phuong thuc them
+    $type->addType($name,$image);
+
+    //xu ly upload
+    $target_dir = "../img/";
+    $target_file = $target_dir . basename($_FILES['type_image']['name']);
+    move_uploaded_file($_FILES['type_image']['tmp_name'], $target_file);
+
+    // var_dump($_FILES);
+    header('location: protype.php');
+}
+
 //Manufactures
 if(isset($_POST['submit_manu'])){
+
     $name = $_POST['manu_name'];
-    var_dump($name);
-    $image = $_FILES['manu_image']['manu_name'];
-    var_dump($image);
+    $image = $_FILES['manu_image']['name'];
 
     //goi phuong thuc them
     $manu->addManu($name,$image);
 
     //xu ly upload
     $target_dir = "../img/";
-    $target_file = $target_dir . basename($_FILES['manu_image']['manu_name']);
+    $target_file = $target_dir . basename($_FILES['manu_image']['name']);
     move_uploaded_file($_FILES['manu_image']['tmp_name'], $target_file);
 
-    var_dump($_FILES);
-    // header('location: manufacture.php');
+    // var_dump($_FILES);
+    header('location: manufacture.php');
 }
 
 //Products

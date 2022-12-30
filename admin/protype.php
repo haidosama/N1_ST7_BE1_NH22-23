@@ -30,7 +30,7 @@ include "sidebar.php";
         <div class="card-header">
           <h3 class="card-title">Products</h3>
           <div class="card-tools">
-          <a href="product-add.php" class="btn btn-info btn-sm"> Add </a>
+          <a href="protype-add.php" class="btn btn-info btn-sm"> Add </a>
           </div>
         </div>
         <div class="card-body p-0">
@@ -46,68 +46,32 @@ include "sidebar.php";
                       <th style="width: 30%">
                           Name
                       </th>
-                      <th style="width: 10%">
-                          Manu_id
-                      </th>
-                      <th style="width: 10%">
-                          Type_id
-                      </th>
-                      <th style="width: 10%">
-                          Price
-                      </th>
-                      <th style="width: 50%">
-                        Descriptions
-                      </th>
-                      <th style="width: 10%">
-                        Feature
-                      </th>
-                      
                   </tr>
               </thead>
               <tbody>
-              <?php foreach($getAllProducts as $values): ?>
+              <?php foreach($getAllType as $values): ?>
                   <tr>
                       <td>
-                          <?php echo $values['id'] ?>
+                          <?php echo $values['type_id'] ?>
                       </td>
                       <td>
                           <ul class="list-inline">
                               <li class="list-inline-item">
-                                  <img  width=150px src="../img/<?php echo $values['image'] ?>">
+                                  <img  width=150px src="../img/<?php echo $values['type_image'] ?>">
                               </li>
                           </ul>
                       </td>
-                      <td>
-                          <a>
-                          <?php echo $values['name'] ?>
-                          </a>
-                          <br/>
-                          <small>
-                          <?php echo $values['created_at'] ?>
-                          </small>
-                      </td>
-                      <td>
-                          <?php echo $values['manu_name'] ?>
-                      </td>
+                      
                       <td>
                           <?php echo $values['type_name'] ?>
                       </td>
-                      <td>
-                          <?php echo $values['price'] ?>
-                      </td>
-                      <td>
-                          <?php echo substr($values['description'], 0, 100) ?>
-                      </td>
-                      <td>
-                          <?php echo $values['feature'] ?>
-                      </td>
                       <td class="project-actions text-right">
-                          <a class="btn btn-info btn-sm" href="product-edit.php?id=<?php echo $values['id']?>">
+                          <a class="btn btn-info btn-sm" href="protype-edit.php?id=<?php echo $values['type_id']?>">
                               <i class="fas fa-pencil-alt">
                               </i>
                               Edit
                           </a>
-                          <a class="btn btn-danger btn-sm" href="product-del.php?id= <?php echo $values['id'] ?>">
+                          <a class="btn btn-danger btn-sm" href="protype-del.php?id=<?php echo $values['type_id'] ?>">
                               <i class="fas fa-trash">
                               </i>
                               Delete

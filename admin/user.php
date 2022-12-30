@@ -28,9 +28,9 @@ include "sidebar.php";
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Products</h3>
+          <h3 class="card-title">User</h3>
           <div class="card-tools">
-          <a href="product-add.php" class="btn btn-info btn-sm"> Add </a>
+          <a href="user-add.php" class="btn btn-info btn-sm"> Add </a>
           </div>
         </div>
         <div class="card-body p-0">
@@ -41,73 +41,64 @@ include "sidebar.php";
                           ID
                       </th>
                       <th style="width: 20%">
-                         Images
-                      </th>
-                      <th style="width: 30%">
                           Name
                       </th>
                       <th style="width: 10%">
-                          Manu_id
+                          Username
                       </th>
                       <th style="width: 10%">
-                          Type_id
+                          Password
                       </th>
                       <th style="width: 10%">
-                          Price
+                          Phone
                       </th>
-                      <th style="width: 50%">
-                        Descriptions
+                      <th style="width: 20%">
+                        Email
                       </th>
                       <th style="width: 10%">
-                        Feature
+                        Role
                       </th>
-                      
+                      <th style="width: 20%">
+                        Balance
+                      </th>
+                      <th></th>
                   </tr>
               </thead>
               <tbody>
-              <?php foreach($getAllProducts as $values): ?>
+              <?php foreach($getallUser as $values): ?>
                   <tr>
                       <td>
-                          <?php echo $values['id'] ?>
+                          <?php echo $values['id_user'] ?>
                       </td>
                       <td>
-                          <ul class="list-inline">
-                              <li class="list-inline-item">
-                                  <img  width=150px src="../img/<?php echo $values['image'] ?>">
-                              </li>
-                          </ul>
-                      </td>
-                      <td>
-                          <a>
                           <?php echo $values['name'] ?>
-                          </a>
-                          <br/>
-                          <small>
-                          <?php echo $values['created_at'] ?>
-                          </small>
                       </td>
                       <td>
-                          <?php echo $values['manu_name'] ?>
+                          <?php echo $values['username'] ?>
+                      </td>
+                      
+                      <td>
+                          <?php echo $values['password'] ?>
                       </td>
                       <td>
-                          <?php echo $values['type_name'] ?>
+                          <?php echo $values['phone'] ?>
                       </td>
                       <td>
-                          <?php echo $values['price'] ?>
+                          <?php echo $values['email'] ?>
                       </td>
                       <td>
-                          <?php echo substr($values['description'], 0, 100) ?>
+                          <?php echo $values['role'] ?>
                       </td>
                       <td>
-                          <?php echo $values['feature'] ?>
+                          <?php echo $values['balance'] ?>
                       </td>
                       <td class="project-actions text-right">
-                          <a class="btn btn-info btn-sm" href="product-edit.php?id=<?php echo $values['id']?>">
+                          <a class="btn btn-info btn-sm" href="product-edit.php?id=<?php echo $values['id_user']?>">
                               <i class="fas fa-pencil-alt">
                               </i>
                               Edit
                           </a>
-                          <a class="btn btn-danger btn-sm" href="product-del.php?id= <?php echo $values['id'] ?>">
+                          <a class="btn btn-danger btn-sm" href="product-del.php?id= <?php echo $values['id_user'] ?>">
                               <i class="fas fa-trash">
                               </i>
                               Delete

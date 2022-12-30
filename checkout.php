@@ -95,10 +95,9 @@
 							<div><strong>YOUR BALANCE</strong></div>
 							<div><strong class="order-total">
 									<?php
-									$name = $_SESSION['name'] ;
-									$getDataUser = $user->getDataUser($name); foreach ($getDataUser as $value) {
-										echo $value['balance'];
-									} ?> VND</strong></div>
+									$name = $_SESSION['username'] ;
+									$getDataUser = $user->getDataUser($name);
+									echo ($getDataUser[0]['balance']);?> VND</strong></div>
 						</div>
 					</div>
 

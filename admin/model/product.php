@@ -1,6 +1,16 @@
 <?php
 class Product extends Db
 {
+    public function search($keyword)
+    {
+        $keyword = "'%$keyword%'";
+            $sql = self::$connection->prepare("SELECT * FROM `products` WHERE `name` LIKE $keyword");
+            $sql->execute(); //return an object
+            $items = array();
+            $items = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+            return $items; //return an array
+        
+    }
     public function editProduct($name, $manu_id, $type_id, $price, $image, $des, $feature,$id)
     {
         if($image == ""){

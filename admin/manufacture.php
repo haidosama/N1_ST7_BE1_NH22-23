@@ -74,7 +74,7 @@ include "sidebar.php";
                               </i>
                               Edit
                           </a>
-                          <a class="btn btn-danger btn-sm" href="manu-del.php?id= <?php echo $values['manu_id'] ?>">
+                          <a class="btn btn-danger btn-sm" href="manu-del.php?id=<?php echo $values['manu_id'] ?>">
                               <i class="fas fa-trash">
                               </i>
                               Delete

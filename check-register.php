@@ -21,20 +21,20 @@ if (isset($_GET["btn_submit"])) {
 
     if ($checkEmail) {
         $msg = "This email is already in use";
-        //  header("location:register.php");
+         header("location:register.php");
 
     } elseif($checkUsername){
         $msg ="This username is already in use";
-        // header("location:register.php");
+        header("location:register.php");
 
     }elseif($password != $confpassword){
         $msg ="Password and Confirm Password are not the same";
-    //    header("location:register.php");
+       header("location:register.php");
 
     }else{
         $user->insertUser($name, $phone, $email, $username, $password);
         var_dump($user->getDataUser($username));
-        // header("location:login.php");
+        header("location:login.php");
     }
 }
 

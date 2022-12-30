@@ -21,6 +21,7 @@ if (isset($_POST["btn_submit"])) {
         foreach($dataUser as $value){
             $checkRole = $value['role'];
             $_SESSION['name'] = $value['name'];
+            $_SESSION['username'] = $value['username'];
         }
         // $checkRole = $dataUser[0]['role'];
         // $_SESSION['name'] = $dataUser[0]['name'];

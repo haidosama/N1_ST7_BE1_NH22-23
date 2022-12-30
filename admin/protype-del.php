@@ -1,14 +1,14 @@
 <?php
 require "config.php";
 require "model/db.php";
-require "model/manufacture.php";
+require "model/protype.php";
 
-$manu = new Manufacture;
+$type = new Protype;
 
 if(isset($_GET['id'])){
    $id = $_GET['id'];
     
     //goi phuong thuc xoa
-    $manu->delManu($id);
-    header('location: manufacture.php');
+    $type->delType($id);
+    header('location: protype.php');
 }
